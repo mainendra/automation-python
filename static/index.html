@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Login Screens</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+        <!-- Load React. -->
+        <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
+        <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+        <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+        <script src="https://unpkg.com/babel-standalone@6/babel.min.js" crossorigin></script>
+
+        <style>
+            .form-container {
+                width: 300px;
+                margin: 100px auto;
+            }
+
+            .message {
+                text-align: center;
+                width: 300px;
+                margin: 100px auto;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- We will put our React component inside this div. -->
+        <div id="login_container" class="container"></div>
+
+        <!-- Load our React component. -->
+        <script type="text/babel" crossorigin>
+            class LoginScreen extends React.Component {
+                 constructor(props) {
+                     super(props);
+                     this.state = {
+                        submitted: false,
+                        success: false
+                     };
+                     this.userNameRef = React.createRef();
+                     this.passwordRef = React.createRef();
+                 }
+
+                 onSubmit(e) {
+                    if(this.userNameRef.current.value && this.userNameRef.current.value === this.passwordRef.current.value) {
+                        this.setState({
+                            submitted: true,
+                            success: true
+                        });
+                    } else {
+                        this.setState({
+                            submitted: true,
+                            success: false
+                        });
+                    }
+                 }
+               render() {
+                 if (this.state.submitted && this.state.success) {
+                    return (<div id="message" className="message alert alert-success">Success</div>);
+                 } else if (this.state.submitted) {
+                    return (<div id="message" className="message alert alert-danger">Failure</div>);
+                 }
+
+                 return (
+                     <form className="form-container row" onSubmit={() => this.onSubmit()}>
+                         <div className="mb-3">
+                             <label htmlFor="exampleInputEmail1" className="form-label">Username</label>
+                             <input ref={this.userNameRef} type="text" className="form-control" id="inputUsername" aria-describedby="emailHelp" />
+                             <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
+                         </div>
+                         <div className="mb-3">
+                             <label htmlFor="exampleInputPassword1" className="form-label">Password</label>
+                             <input ref={this.passwordRef} type="password" className="form-control" id="inputPassword" />
+                         </div>
+                         <div className="mb-3 form-check">
+                             <input type="checkbox" className="form-check-input" id="checkRememberMe" />
+                             <label className="form-check-label" htmlFor="exampleCheck1">Remember me</label>
+                         </div>
+                         <button type="submit" className="btn btn-primary">Submit</button>
+                     </form>
+                 );
+               }
+            }
+
+            const domContainer = document.getElementById('login_container');
+            ReactDOM.render(<LoginScreen />, domContainer);
+        </script>
+
+    </body>
+</html>
+
