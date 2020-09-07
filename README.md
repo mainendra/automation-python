@@ -15,3 +15,5 @@ Web Automation using python
 
 * Run http server using `python -m http.server 8080` command in `/static` directory
 * Run python script using `python index.py` command
+
+Note: same username and password will take you to success page otherwise failure page
