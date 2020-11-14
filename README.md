@@ -17,3 +17,5 @@ Web Automation using python
 * Run python script using `python index.py` command
 
 Note: same username and password will take you to success page otherwise failure page
+
+<img src="login_screen.gif" height="350px">
