@@ -4,15 +4,17 @@ import time
 
 driver = webdriver.Chrome()
 
+url = 'https://m-loginpage.surge.sh/'
+
 def successLoginEntry():
-    driver.get('http://localhost:8080')
+    driver.get(url)
     username = driver.find_element_by_id('inputUsername')
     password = driver.find_element_by_id('inputPassword')
     username.send_keys('hello')
     password.send_keys('hello')
 
 def errorLoginEntry():
-    driver.get('http://localhost:8080')
+    driver.get(url)
     username = driver.find_element_by_id('inputUsername')
     password = driver.find_element_by_id('inputPassword')
     username.send_keys('hello')
